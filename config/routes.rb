@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get("/", { :controller => "first", :action => "index" })
+  get("/car", { :controller => "car", :action => "show" })
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
