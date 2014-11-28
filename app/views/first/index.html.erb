@@ -1,35 +1,75 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Auto Q/A: Hello World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<style type="text/css">
+        td { width: 30px; overflow: hidden; }
+        table { width : 90px; table-layout: fixed; }
+    </style>
 </head>
 
 <body>
   <div class="container">
 
-  <div class="jumbotron">
-  <h1>Welcome to Auto Q/A!</h1>
+    <div class="jumbotron">
+      <h1>Welcome to Auto Q/A!</h1>
 
-  <p> Auto Q/A is a question and answer site for enthusiast of cars. It's 100% free, no registration required. </p>
- <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-  </div>
+      <p> Auto Q/A is a question and answer site for enthusiast of cars. It's 100% free, no registration required. </p>
+      <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+    </div>
 
     <h4><span class="label label-default">Last Questions</span></h4>
 
+
+
     <div class="row">
+
+      <% @autos.each do |auto| %>
+
+
       <div class="col-xs-12 col-sm-6 col-md-3">
+
         <div class="thumbnail">
           <img class="img-rounded" src="test_image.jpg">
           <div class="caption">
-            <h5> <a href="car">Porsche Cayenne 2014</a></h5>
-            <p>De que color es el caballo azul de Napoleon que no es lila <span class="badge">3</span></p>
+
+          <table style="width:100%">
+            <tr>
+              <th><h5> <a href="car"><%=details(auto)%></a></h5></th>
+            </tr>
+            </table>
+            <% auto.questions.each do |question| %>
+
+            <div>
+
+              <p><%=question.question%></p>
+
+            </div>
+
+
+            <table style="width:100%">
+              <tr>
+                <th>Replies</th>
+                <th><span class="badge"> 3</span></th>
+                <th>Likes</th>
+                <th><span class="badge"> 26</span></th>
+              </tr>
+            </table>
+
             <p><a href="#" class="btn btn-primary" role="button">Responder</a> </p>
+          <% end %>
+
           </div>
         </div>
+
+
+
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
+    <% end %>
+
+      <!-- <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="thumbnail">
           <img class="img-rounded" src="test_image.jpg">
           <div class="caption">
@@ -61,7 +101,7 @@
         </div>
       </div>
     </div>
-
+-->
      <div class="row">
       <div class="col-md-12">
       <div class="thumbnail"> <img src="ad1.png"></div>

@@ -11,7 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127060948) do
+ActiveRecord::Schema.define(version: 20141127234148) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "id_question"
+    t.integer  "id_user"
+    t.string   "answer"
+    t.integer  "likes",          default: 0,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "autos", force: true do |t|
+    t.string   "brand"
+    t.string   "model"
+    t.integer  "year"
+    t.integer  "price_low"
+    t.integer  "price_high"
+    t.integer  "mpg_city"
+    t.integer  "mpg_hwy"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", force: true do |t|
+    t.integer  "id_auto"
+    t.string   "link"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer  "id_auto"
+    t.integer  "id_user"
+    t.string   "question"
+    t.integer  "likes",                  default: 0,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
