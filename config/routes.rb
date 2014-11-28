@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # Routes for the Answer resource:
   # CREATE
   get('/answers/new', { :controller => 'answers', :action => 'new' })
+  get('/answers/new/:id', { :controller => 'answers', :action => 'new' })
   get('/create_answer', { :controller => 'answers', :action => 'create' })
 
   # READ
