@@ -1,0 +1,47 @@
+
+
+Write your custom styles and overrides of Bootstrap in this file.
+
+For example, if you wanted to change the body font:
+
+body {
+  font-family: "Vollkorn";
+}
+
+.jumbotron {
+padding: 5px;
+margin-bottom: 30px;
+color: inherit;
+background-color: #eee;
+}
+
+.blueh1 {
+   color:darkblue;
+   text-align: center;
+   padding-bottom: 20px;
+}
+.blueh2 {
+   color:darkblue;
+   padding-top: 20px;
+
+ }
+
+ div.altofijo {
+    height: 50px;
+    overflow-y:hidden;
+}
+
+/*
+
+* {
+  box-sizing: border-box;
+
+   Make the invisible visible
+  border: thin red solid;
+}
+.column25 {
+      float: left;
+      width: 25%;
+      max-height: 250px;
+      }
+*/

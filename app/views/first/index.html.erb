@@ -4,10 +4,7 @@
 <head>
   <title>Auto Q/A: Hello World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<style type="text/css">
-        td { width: 30px; overflow: hidden; }
-        table { width : 90px; table-layout: fixed; }
-    </style>
+
 </head>
 
 <body>
@@ -35,31 +32,34 @@
           <img class="img-rounded" src="test_image.jpg">
           <div class="caption">
 
-          <table style="width:100%">
-            <tr>
-              <th><h5> <a href="car"><%=details(auto)%></a></h5></th>
-            </tr>
-            </table>
+
+
+            <h5> <a href="car"><%=details(auto)%></a></h5>
+
             <% auto.questions.each do |question| %>
 
-            <div>
+            <div style="height: 75px" ><table>
 
-              <p><%=question.question%></p>
+              <td><p><%=question.question%></td></p></table>
 
             </div>
 
-
+            <div style="height: 70px">
             <table style="width:100%">
               <tr>
                 <th>Replies</th>
-                <th><span class="badge"> 3</span></th>
+                <th><span class="badge"> <%=question.answers.count%></span></th>
                 <th>Likes</th>
-                <th><span class="badge"> 26</span></th>
+                <th><span class="badge"> <%=question.likes%></span></th>
               </tr>
             </table>
+            </div>
 
-            <p><a href="#" class="btn btn-primary" role="button">Responder</a> </p>
-          <% end %>
+            <div style="height: 70px">
+
+            <p><a href="#" class="btn btn-primary" role="button">Reply Now</a> </p>
+            </div>
+            <% end %>
 
           </div>
         </div>
@@ -67,7 +67,7 @@
 
 
       </div>
-    <% end %>
+      <% end %>
 
       <!-- <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="thumbnail">
