@@ -21,59 +21,55 @@
 
     <div class="row">
 
-      <% @autos.each do |auto| %>
+    <% @lastQuestions.each do |lq| %>
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="thumbnail">
-        <% auto.photos.each do |foto| %>
+        <% auto = Auto.find(lq.id_auto)%>
 
+        <img class="img-rounded" src="<%=auto.photos[0].link%>">
 
-          <img class="img-rounded" src="<%=foto.link%>">
-           <% end %>
           <div class="caption">
             <h5> <a href="car"><%=details(auto)%></a></h5>
 
-            <% auto.questions.each do |question| %>
-
-            <div style="height: 75px" ><table>
-              <td><p><%=question.question%></td></p></table>
+           <div style="height: 75px" ><table>
+              <td><p><%=lq.question%></td></p></table>
             </div>
             <div style="height: 50px">
               <table style="width:100%">
                 <tr>
                   <th>Replies</th>
-                  <th><span class="badge"> <%=question.answers.count%></span></th>
-                  <th>Likes</th>
-                  <th><span class="badge"> <%=question.likes%></span></th>
+                  <th><span class="badge"> <%=lq.answers.count%></span></th>
+
                 </tr>
               </table>
             </div>
             <div style="height: 70px">
 
-              <p><a href="/answers/new/<%=question.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a> </p>
+              <p><a href="/answers/new/<%=lq.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a> </p>
             </div>
-            <% end %>
+
           </div>
         </div>
       </div>
       <% end %>
 
 
-     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="thumbnail"> <img src="ad1.png"></div>
-    </div>
-    </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="thumbnail"> <img src="ad1.png"></div>
+        </div>
+      </div>
 
-    <h4><span class="label label-default">Popular</span></h4>
+      <h4><span class="label label-default">Popular</span></h4>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="thumbnail">
-          <img class="img-rounded" src="test_image.jpg">
-          <div class="caption">
-            <h5>Porsche Cayenne 2014</h5>
-            <p>De que color es el caballo azul de Napoleon que no es lila <span class="badge">1070</span></p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <img class="img-rounded" src="test_image.jpg">
+            <div class="caption">
+              <h5>Porsche Cayenne 2014</h5>
+              <p>De que color es el caballo azul de Napoleon que no es lila <span class="badge">1070</span></p>
               <p><a href="#" class="btn btn-primary" role="button">Responder</a> </p>
             </div>
           </div>
@@ -110,24 +106,24 @@
         </div>
       </div>
       <div class="row">
-      <div class="col-md-12">
-      <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Footer</div>
-  <div class="panel-body">
-    <p>...</p>
-  </div>
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Footer</div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
 
-  <!-- List group -->
-  <ul class="list-group">
-    <li class="list-group-item">Contact us</li>
-    <li class="list-group-item">About us</li>
-    <li class="list-group-item">Services</li>
-    <li class="list-group-item">Products</li>
-    <li class="list-group-item">Copyleft 2014</li>
-  </ul>
-</div></div>
-    </div>
-    </div>
-      </body>
-      </html>
+            <!-- List group -->
+            <ul class="list-group">
+              <li class="list-group-item">Contact us</li>
+              <li class="list-group-item">About us</li>
+              <li class="list-group-item">Services</li>
+              <li class="list-group-item">Products</li>
+              <li class="list-group-item">Copyleft 2014</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </body>
+    </html>

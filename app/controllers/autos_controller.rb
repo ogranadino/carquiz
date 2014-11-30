@@ -1,7 +1,22 @@
 class AutosController < ApplicationController
+
+  helper_method :details
+
+  def details(auto)
+    brand = auto.brand
+    model = auto.model
+    year = auto.year.to_s
+    detail = brand+" "+model+" "+year
+    return detail
+  end
+
+
+
   def index
     @autos = Auto.all
   end
+
+
 
   def show
     @auto = Auto.find(params[:id])

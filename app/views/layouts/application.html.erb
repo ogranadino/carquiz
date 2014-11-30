@@ -6,7 +6,6 @@
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <!--<link rel="stylesheet" type="text/css" href="my_styles.css">-->
 
   <style>
     /* Only necessary if you are using navbar-fixed-top */
@@ -26,79 +25,73 @@
 <body>
 
   <nav class="navbar navbar-default" role="navigation">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
 
-              <a class="navbar-brand" href="/"> Auto! Q/A</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Model <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Year <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-
-
-              <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-right" role="search">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Search</button>
-                </form>
-
-                <li><a href="/users/sign_up">sign up</a></li>
-                <li><a href="/users/sign_in">sign in</a></li>
-
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid-->
-        </nav>
-
-  <div class="container">
-    <% if notice.present? %>
-      <div class="alert alert-dismissable alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= notice %>
+        <a class="navbar-brand" href="/"> Auto! Q/A</a>
       </div>
-    <% end %>
 
-    <% if alert.present? %>
-      <div class="alert alert-dismissable alert-warning">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= alert %>
-      </div>
-    <% end %>
+      <ul class="nav navbar-nav navbar-left">
+        <form class="navbar-form navbar-right" role="menu">
+          <div class="form-group">
+            <select class="form-control">
+              <option value="Select Your Vehicle">Select Your Vehicle</option>
+              <%brandmodel = Auto.order("brand ASC")%>
+              <%brand="none"%>
+              <% brandmodel.each do |bm| %>
+              <%if brand!=bm.brand%>
+              <%brand = bm.brand%>
+              <optgroup label="<%=bm.brand%>">
+                <%end%>
+                <option value="<%bm.id%>"><%=bm.model%> <%="("+bm.questions.count.to_s+")"%></option>
+                <% end %>
+              </optgroup>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Go</button>
+        </form>
+      </ul>
+
+      <!-- Collect the nav links, forms, and other content for toggling-->
+
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+
+        <li><a href="/users/sign_up">sign up</a></li>
+        <li><a href="/users/sign_in">sign in</a></li>
+        <li><a href="/users/sign_out">sign out</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid-->
+</nav>
+
+<div class="container">
+  <% if notice.present? %>
+  <div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= notice %>
+  </div>
+  <% end %>
+
+  <% if alert.present? %>
+  <div class="alert alert-dismissable alert-warning">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= alert %>
+  </div>
+  <% end %>
 
     <%= yield %>
   </div>

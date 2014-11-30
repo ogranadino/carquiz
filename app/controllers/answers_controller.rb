@@ -18,9 +18,11 @@ class AnswersController < ApplicationController
     @answer.id_user = params[:id_user]
     @answer.answer = params[:answer]
     @answer.likes = params[:likes]
+    question = Question.find(@answer.id_question)
+    car = Auto.find(question.id_auto)
 
     if @answer.save
-      redirect_to "/answers", :notice => "Answer created successfully."
+      redirect_to "/autos/"+car.id.to_s, :notice => "Answer created successfully."
     else
       render 'new'
     end
