@@ -1,4 +1,16 @@
 class QuestionsController < ApplicationController
+
+  helper_method :details
+
+  def details(auto)
+    brand = auto.brand
+    model = auto.model
+    year = auto.year.to_s
+    detail = brand+" "+model+" "+year
+    return detail
+  end
+
+
   def index
     @questions = Question.all
   end
@@ -9,7 +21,10 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @auto = Auto.find(params[:id])
   end
+
+
 
   def create
     @question = Question.new

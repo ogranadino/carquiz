@@ -21,9 +21,9 @@
         <h4>$<%=number_with_delimiter(@auto.price_low)%> to $<%=number_with_delimiter(@auto.price_high)%></h1>
           <h5 class="blueh2">Estimated MPG</h3>
             <h4><%=@auto.mpg_city%> city / <%=@auto.mpg_hwy%> hwy</h1>
-              <h6 class="blueh2">Request a Land Rover brochure</h5>
-                <h6 class="blueh2">See Photos & Videos</h5>
-                  <button type="button" class="btn btn-success btn-lg">Compare</button>
+             <!-- <h6 class="blueh2">Request a Land Rover brochure</h5>-->
+                <!--<h6 class="blueh2">See Photos & Videos</h5>-->
+                  <a href="/questions/new/<%=@auto.id.to_s %>" class="btn btn-success btn-lg"  role="button">Ask a Question</a>
 
                 </div>
               </div>
@@ -31,8 +31,7 @@
                 <div class="thumbnail">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#">Questions & Answers</a></li>
-                    <li><a href="#">Photos & Videos</a></li>
-                    <li><a href="#">Reviews</a></li>
+
                   </ul>
 
                   <div id="accordion" class="panel-group">
@@ -45,54 +44,67 @@
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><%=i%>. <%=qw.question%> Replies <span class="badge"><%=qw.answers.count%></span></a>
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><h4><%=i%>. <strong><%=qw.question%></strong></h4> <p> Question by <strong><%=User.find(qw.id_user).email%></strong> <%=time_ago_in_words(qw.created_at)%> ago.</p>
+
+
+                          <div>
+                          See answers. <span class="badge"><%=qw.answers.count%></span></div></div></a>
                           <p><a href="/answers/new/<%=qw.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a></p>
                         </h4>
                       </div>
+
                       <div id="collapse<%=i%>" class="panel-collapse collapse">
-<%i=i+1%>
+                        <%i=i+1%>
                         <% answs.each do |answ| %>
 
 
-                       <div class="panel-body">
-                        <div>
-                        <%=answ.answer%> by <strong><%=User.find(answ.id_user).email%></strong> on <%=answ.created_at%></div>
-                        <div>Votes <%=answ.likes%>
+                        <div class="panel-body">
+                            <ul>
+                            <div>
+                            <li><%=answ.answer%>
+                            </div>
+                            <div>by <strong><%=User.find(answ.id_user).email%></strong> <%=time_ago_in_words(answ.created_at)%> ago.
+                            </div>
+
+                            <div>
+
+                             <a href="/answervoteup/<%=answ.id%>" class="btn btn-primary btn-xs" role="button"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a>
+
+                             <%if answ.likes.to_f == 0%>
+                             <a href="/answervotedown/<%=answ.id%>" class="btn btn-primary btn-xs" role="button"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" disabled></span></a>
+
+                             <%else%>
+                             <a href="/answervotedown/<%=answ.id%>" class="btn btn-primary btn-xs" role="button"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                             <%end%>
+
+                             <strong>Votes <%=answ.likes%> </strong>
 
 
-                       <form action="http://google.com"><button type="submit" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button></form>
 
-                       <button type="submit" class="btn btn-default btn-xs" href="/answers/new/"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button> <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></div>
-
-                        </div>
-
+                           </div>
+                          </li></ul>
+                         </div>
 
 
-                        <% end %>
-                      </div>
-                    </div>
 
-                    <% end %>
+                         <% end %>
+                       </div>
+                     </div>
 
-                    </div>
-                  </div>
+                     <% end %>
 
-                </div>
-              </div>
-              <div class="col-sm-12">
+                   </div>
+                 </div>
+
+                 </div>
+               </div>
+               <div class="col-sm-12">
                 <div class="thumbnail"><img src="/ad1.png"></div>
               </div>
             </div>
 
 
-            <!-- List group -->
-            <ul class="list-group">
-              <li class="list-group-item">Contact us</li>
-              <li class="list-group-item">About us</li>
-              <li class="list-group-item">Services</li>
-              <li class="list-group-item">Products</li>
-              <li class="list-group-item">Copyleft 2014</li>
-            </ul>
+
           </div>
         </body>
         </html>
@@ -117,33 +129,4 @@
 
 
 
-<div class="page-header">
-  <h1>Auto #<%= @auto.id %></h1>
-</div>
 
-<dl class="dl-horizontal">
-  <dt>Brand</dt>
-  <dd><%= @auto.brand %></dd>
-
-  <dt>Model</dt>
-  <dd><%= @auto.model %></dd>
-
-  <dt>Year</dt>
-  <dd><%= @auto.year %></dd>
-
-  <dt>Price low</dt>
-  <dd><%= @auto.price_low %></dd>
-
-  <dt>Price high</dt>
-  <dd><%= @auto.price_high %></dd>
-
-  <dt>Mpg city</dt>
-  <dd><%= @auto.mpg_city %></dd>
-
-  <dt>Mpg hwy</dt>
-  <dd><%= @auto.mpg_hwy %></dd>
-
-  <dt>Comment</dt>
-  <dd><%= @auto.comment %></dd>
-
-</dl>

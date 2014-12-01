@@ -47,6 +47,60 @@ class AnswersController < ApplicationController
     end
   end
 
+def voteup
+    answer = Answer.find(params[:id])
+    answer.likes = answer.likes+1
+
+    question=Question.find(answer.id_question)
+    auto = Auto.find(question.id_auto)
+
+    if answer.save
+      redirect_to "/autos/"+auto.id.to_s, :notice => "Thanks for you +1."
+    else
+      render 'edit'
+    end
+  end
+
+  def votedown
+    answer = Answer.find(params[:id])
+    answer.likes = answer.likes-1
+
+    question=Question.find(answer.id_question)
+    auto = Auto.find(question.id_auto)
+
+    if answer.save
+      redirect_to "/autos/"+auto.id.to_s, :notice => "Thanks for voting."
+    else
+      render 'edit'
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   def destroy
     @answer = Answer.find(params[:id])
 

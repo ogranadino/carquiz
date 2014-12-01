@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get('/create_photo', { :controller => 'photos', :action => 'create' })
 
   # READ
-  get('/photos', { :controller => 'photos', :action => 'index' })
+  #get('/photos', { :controller => 'photos', :action => 'index' })
   get('/photos/:id', { :controller => 'photos', :action => 'show' })
 
   # UPDATE
@@ -23,13 +23,17 @@ Rails.application.routes.draw do
   get('/answers/new/:id', { :controller => 'answers', :action => 'new' })
   get('/create_answer', { :controller => 'answers', :action => 'create' })
 
+
+
   # READ
-  get('/answers', { :controller => 'answers', :action => 'index' })
+  #get('/answers', { :controller => 'answers', :action => 'index' })
   get('/answers/:id', { :controller => 'answers', :action => 'show' })
 
   # UPDATE
   get('/answers/:id/edit', { :controller => 'answers', :action => 'edit' })
   get('/update_answer/:id', { :controller => 'answers', :action => 'update' })
+  get('/answervoteup/:id', { :controller => 'answers', :action => 'voteup' })
+  get('/answervotedown/:id', { :controller => 'answers', :action => 'votedown' })
 
   # DELETE
   get('/delete_answer/:id', { :controller => 'answers', :action => 'destroy' })
@@ -37,11 +41,11 @@ Rails.application.routes.draw do
 
   # Routes for the Question resource:
   # CREATE
-  get('/questions/new', { :controller => 'questions', :action => 'new' })
+  get('/questions/new/:id', { :controller => 'questions', :action => 'new' })
   get('/create_question', { :controller => 'questions', :action => 'create' })
 
   # READ
-  get('/questions', { :controller => 'questions', :action => 'index' })
+  #get('/questions', { :controller => 'questions', :action => 'index' })
   get('/questions/:id', { :controller => 'questions', :action => 'show' })
 
   # UPDATE
@@ -58,8 +62,10 @@ Rails.application.routes.draw do
   get('/create_auto', { :controller => 'autos', :action => 'create' })
 
   # READ
-  get('/autos', { :controller => 'autos', :action => 'index' })
+  #get('/autos', { :controller => 'autos', :action => 'index' })
   get('/autos/:id', { :controller => 'autos', :action => 'show' })
+  get('/showup/', { :controller => 'autos', :action => 'show' })
+
 
   # UPDATE
   get('/autos/:id/edit', { :controller => 'autos', :action => 'edit' })
@@ -71,7 +77,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get("/", { :controller => "first", :action => "index" })
-  get("/car", { :controller => "car", :action => "show" })
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
