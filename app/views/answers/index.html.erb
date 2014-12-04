@@ -2,7 +2,7 @@
   <h1>Answers</h1>
 </div>
 
-<p><a href="/answers/new" class="btn btn-primary">Add a New Answer</a></p>
+
 
 <table class="table table-hover">
   <thead>
@@ -22,7 +22,7 @@
       <!--<%question = Question.find_by(answer.id_question)%>-->
       <tr>
         <td><%= Question.find(answer.id_question).question %></td>
-        <td><%= answer.id_user %></td>
+        <td><%= User.find(answer.id_user).email %></td>
         <td><%= answer.answer %></td>
         <td><%= answer.likes %></td>
         <td>

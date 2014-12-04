@@ -2,7 +2,7 @@
   <h1>Questions</h1>
 </div>
 
-<p><a href="/questions/new" class="btn btn-primary">Add a New Question</a></p>
+
 
 <table class="table table-hover">
   <thead>
@@ -20,8 +20,8 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.id_auto %></td>
-        <td><%= question.id_user %></td>
+        <td><%= Auto.find(question.id_auto).model %></td>
+        <td><%= User.find(question.id_user).email %></td>
         <td><%= question.question %></td>
         <td><%= question.likes %></td>
         <td>
