@@ -68,6 +68,7 @@
 
       </ul>
 
+
       <!-- Collect the nav links, forms, and other content for toggling-->
 
       <ul class="nav navbar-nav navbar-right">
@@ -77,11 +78,15 @@
           </div>
           <button type="submit" class="btn btn-default">Search</button>
         </form>
+        <%if current_user==nil%>
+        <li><a href="">Hi! Guest</a></li>
+          <li><a href="/users/sign_up">sign up</a></li>
+          <li><a href="/users/sign_in">log in</a></li>
 
-        <li><a href="/users/sign_up">sign up</a></li>
-        <li><a href="/users/sign_in">sign in</a></li>
-        <li><a href="<%=destroy_user_session_path%>">sign out</a></li>
-
+        <%elsif current_user!=nil%>
+          <li><a href="/userdata/<%=current_user.id%>">Welcome back! <%=current_user.email%></a></li>
+          <li><a href="<%=destroy_user_session_path%>">sign out</a></li>
+        <%end%>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid-->

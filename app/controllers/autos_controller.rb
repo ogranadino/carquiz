@@ -11,9 +11,15 @@ class AutosController < ApplicationController
   end
 
 
-
   def index
     @autos = Auto.all
+  end
+
+  def userdata
+    @autos = Auto.all
+
+    @questions = Question.where(:id_user => current_user.id)
+
   end
 
 

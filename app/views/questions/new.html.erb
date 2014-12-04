@@ -27,6 +27,8 @@
       </div>
 
       <!-- Label and input for id_user -->
+
+
       <div class="form-group">
         <label for="id_user" class="col-sm-2 control-label">
           User:
@@ -35,7 +37,7 @@
           <%if current_user!=nil%>
           <%=current_user.email%>
           <%else%>
-          <div class="alert alert-danger" role="alert">What the fuck man? Log-in first!</div>
+          <div class="alert alert-danger" role="alert">Dude, log-in first!</div>
           <%end%>
 
           <%if current_user!=nil%>
@@ -44,6 +46,8 @@
 
 
         </div>
+
+
       </div>
 
       <!-- Label and input for question -->
@@ -79,8 +83,9 @@
          <%else%>
           <input type="submit" value="Create Question" class="btn btn-primary" disabled>
           <%end%>
-
         </div>
+        <div class="col-sm-offset-2 col-sm-10">
+          <h4>We will sent this question to <strong><%=@auto.users.count%> </strong> users that owns this car.</h4></p></div>
       </div>
     </form>
   </div>

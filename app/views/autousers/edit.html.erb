@@ -1,0 +1,83 @@
+<% if @autouser.errors.any? %>
+  <% @autouser.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h1>Edit Autouser #<%= @autouser.id %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_autouser/<%= @autouser.id %>" class="form-horizontal">
+      <!-- Label and input for id_auto -->
+      <div class="form-group">
+        <label for="id_auto" class="col-sm-2 control-label">
+          Id auto
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="id_auto" name="id_auto" placeholder="Id auto" class="form-control" value="<%= @autouser.id_auto %>">
+        </div>
+      </div>
+
+      <!-- Label and input for id_user -->
+      <div class="form-group">
+        <label for="id_user" class="col-sm-2 control-label">
+          Id user
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="id_user" name="id_user" placeholder="Id user" class="form-control" value="<%= @autouser.id_user %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" value="Update Autouser" class="btn btn-primary">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Autouser #<%= @autouser.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_autouser/<%= @autouser.id %>" class="form-horizontal">
+          <!-- Label and input for id_auto -->
+          <div class="form-group">
+            <label for="id_auto" class="col-sm-2 control-label">
+              Id auto
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="id_auto" name="id_auto" placeholder="Id auto" class="form-control" value="<%= @autouser.id_auto %>">
+            </div>
+          </div>
+
+          <!-- Label and input for id_user -->
+          <div class="form-group">
+            <label for="id_user" class="col-sm-2 control-label">
+              Id user
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="id_user" name="id_user" placeholder="Id user" class="form-control" value="<%= @autouser.id_user %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" value="Update Autouser" class="btn btn-primary">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

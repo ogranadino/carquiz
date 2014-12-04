@@ -1,12 +1,29 @@
 Rails.application.routes.draw do
 
+  # Routes for the Autouser resource:
+  # CREATE
+  get('/autousers/new', { :controller => 'autousers', :action => 'new' })
+  get('/create_autouser', { :controller => 'autousers', :action => 'create' })
+
+  # READ
+  get('/autousers', { :controller => 'autousers', :action => 'index' })
+  get('/autousers/:id', { :controller => 'autousers', :action => 'show' })
+
+  # UPDATE
+  get('/autousers/:id/edit', { :controller => 'autousers', :action => 'edit' })
+  get('/update_autouser/:id', { :controller => 'autousers', :action => 'update' })
+
+  # DELETE
+  get('/delete_autouser/:id', { :controller => 'autousers', :action => 'destroy' })
+  #------------------------------
+
   # Routes for the Photo resource:
   # CREATE
   get('/photos/new', { :controller => 'photos', :action => 'new' })
   get('/create_photo', { :controller => 'photos', :action => 'create' })
 
   # READ
-  #get('/photos', { :controller => 'photos', :action => 'index' })
+  get('/photos', { :controller => 'photos', :action => 'index' })
   get('/photos/:id', { :controller => 'photos', :action => 'show' })
 
   # UPDATE
@@ -26,7 +43,7 @@ Rails.application.routes.draw do
 
 
   # READ
-  #get('/answers', { :controller => 'answers', :action => 'index' })
+  get('/answers', { :controller => 'answers', :action => 'index' })
   get('/answers/:id', { :controller => 'answers', :action => 'show' })
 
   # UPDATE
@@ -45,7 +62,7 @@ Rails.application.routes.draw do
   get('/create_question', { :controller => 'questions', :action => 'create' })
 
   # READ
-  #get('/questions', { :controller => 'questions', :action => 'index' })
+  get('/questions', { :controller => 'questions', :action => 'index' })
   get('/questions/:id', { :controller => 'questions', :action => 'show' })
 
   # UPDATE
@@ -62,7 +79,7 @@ Rails.application.routes.draw do
   get('/create_auto', { :controller => 'autos', :action => 'create' })
 
   # READ
-  #get('/autos', { :controller => 'autos', :action => 'index' })
+  get('/autos', { :controller => 'autos', :action => 'index' })
   get('/autos/:id', { :controller => 'autos', :action => 'show' })
   get('/showup/', { :controller => 'autos', :action => 'show' })
 
@@ -74,6 +91,8 @@ Rails.application.routes.draw do
   # DELETE
   get('/delete_auto/:id', { :controller => 'autos', :action => 'destroy' })
   #------------------------------
+
+  get('/userdata/:id', { :controller => 'autos', :action => 'userdata' })
 
   devise_for :users
   get("/", { :controller => "first", :action => "index" })

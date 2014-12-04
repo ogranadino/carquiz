@@ -34,9 +34,10 @@ class QuestionsController < ApplicationController
     @question.likes = params[:likes]
 
     if @question.save
-      redirect_to "/questions", :notice => "Question created successfully."
+       redirect_to "/autos/"+@question.id_auto.to_s, :notice => "Question created successfully."
     else
-      render 'new'
+       redirect_to :back, :alert => "Questions can't be empty."
+      #render 'new'
     end
   end
 

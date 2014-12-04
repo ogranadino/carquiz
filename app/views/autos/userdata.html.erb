@@ -1,37 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Application: Second Screen</title>
 
+  <div class="jumbotron">
+  <h2>Hi <%=current_user.email%></h1>
+  <h4>You currently owns <%=current_user.autos.count%> whips!</h4>
+  <% owned = current_user.autos %>
+  <% owned.each do |own| %>
+  <li><%=own.brand%> <%=own.model%> <%=own.year%></li>
+  <% end %>
 
-</head>
-<body>
-  <div class="container">
+</div>
 
-   <div class="row">
-    <div class="col-sm-8">
-      <div class="thumbnail">
-       <h2 class ="blueh1"><%=details(@auto)%></h2>
-       <img src="<%=@auto.photos[0].link%>">
-     </div>
-   </div>
-   <div class="col-sm-4">
-    <div class="thumbnail">
-      <h5 class="blueh2">Starting MSRP</h3>
-        <h4>$<%=number_with_delimiter(@auto.price_low)%> to $<%=number_with_delimiter(@auto.price_high)%></h1>
-          <h5 class="blueh2">Estimated MPG</h3>
-            <h4><%=@auto.mpg_city%> city / <%=@auto.mpg_hwy%> hwy</h1>
-             <!-- <h6 class="blueh2">Request a Land Rover brochure</h5>-->
-                <!--<h6 class="blueh2">See Photos & Videos</h5>-->
-                  <a href="/questions/new/<%=@auto.id.to_s %>" class="btn btn-success btn-lg"  role="button">Ask a Question</a>
-                  <h4>Currently <strong><%=@auto.users.count%> </strong> Users Has This Car.</h4>
-
-                </div>
-              </div>
-              <div class="col-sm-12">
+       <div class="col-sm-12">
                 <div class="thumbnail">
                   <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#">Questions & Answers</a></li>
+                    <li class="active"><a href="#">Your Historical Questions</a></li>
 
                   </ul>
 
@@ -39,19 +20,18 @@
 
 
                     <%i=1%>
-                    <% @auto.questions.each do |qw| %>
+                    <% @questions.each do |qw| %>
                     <% answs = Answer.where(:id_question => qw.id).order("likes DESC")%>
 
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><h4><%=i%>. <strong><%=qw.question%></strong></h4> <p> Question by <strong><%=User.find(qw.id_user).email%></strong> <%=time_ago_in_words(qw.created_at)%> ago.</p>
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><h4><%=i%>. <strong><%=qw.question%></strong></h4> <p> Question by <strong><%=User.find(qw.id_user).email%></strong> <%=time_ago_in_words(qw.created_at)%> ago for <%=Auto.find(qw.id_auto).brand%> <%=Auto.find(qw.id_auto).model%> <%=Auto.find(qw.id_auto).year%></p>
 
 
                           <div>
                           See answers. <span class="badge"><%=qw.answers.count%></span></div></div></a>
-                          <p><a href="/answers/new/<%=qw.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a></p>
-                        </h4>
+                          </h4>
                       </div>
 
                       <div id="collapse<%=i%>" class="panel-collapse collapse">
@@ -60,7 +40,7 @@
 
 
                         <div class="panel-body">
-                            <ul>
+
                             <div>
                             <li><%=answ.answer%>
                             </div>
@@ -83,7 +63,7 @@
 
 
                            </div>
-                          </li></ul>
+                          </li>
                          </div>
 
 
@@ -99,35 +79,9 @@
 
                  </div>
                </div>
-               <div class="col-sm-12">
-                <div class="thumbnail"><img src="/ad1.png"></div>
-              </div>
-            </div>
 
+</ul>
 
-
-          </div>
-        </body>
-        </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </tbody>
+</table>
 

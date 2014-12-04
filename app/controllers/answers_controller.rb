@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @question = Question.find(params[:id])
+
   end
 
   def create
@@ -20,11 +21,19 @@ class AnswersController < ApplicationController
     @answer.likes = params[:likes]
     question = Question.find(@answer.id_question)
     car = Auto.find(question.id_auto)
+    check = params[:check]
+
+    if check
+      autouser = Autouser.new
+      autouser.id_user = @answer.id_user
+      autouser.id_auto = question.id_auto
+      autouser.save
+    end
 
     if @answer.save
       redirect_to "/autos/"+car.id.to_s, :notice => "Answer created successfully."
     else
-      render 'new'
+      redirect_to :back, :alert => "Answer can't be empty."
     end
   end
 
@@ -48,13 +57,13 @@ class AnswersController < ApplicationController
   end
 
 def voteup
-    answer = Answer.find(params[:id])
-    answer.likes = answer.likes+1
+    @answer = Answer.find(params[:id])
+    @answer.likes = @answer.likes+1
 
-    question=Question.find(answer.id_question)
+    question=Question.find(@answer.id_question)
     auto = Auto.find(question.id_auto)
 
-    if answer.save
+    if @answer.save
       redirect_to "/autos/"+auto.id.to_s, :notice => "Thanks for you +1."
     else
       render 'edit'
@@ -62,14 +71,14 @@ def voteup
   end
 
   def votedown
-    answer = Answer.find(params[:id])
-    answer.likes = answer.likes-1
+    @answer = Answer.find(params[:id])
+    @answer.likes = @answer.likes-1
 
-    question=Question.find(answer.id_question)
+    question=Question.find(@answer.id_question)
     auto = Auto.find(question.id_auto)
 
-    if answer.save
-      redirect_to "/autos/"+auto.id.to_s, :notice => "Thanks for voting."
+    if @answer.save
+      redirect_to "/autos/"+auto.id.to_s, :notice => "Thanks for your -1."
     else
       render 'edit'
     end

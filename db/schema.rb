@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127234148) do
+ActiveRecord::Schema.define(version: 20141203215745) do
 
   create_table "answers", force: true do |t|
     t.integer  "id_question"
     t.integer  "id_user"
     t.string   "answer"
-    t.integer  "likes",          default: 0,  null: false
+    t.integer  "likes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20141127234148) do
     t.datetime "updated_at"
   end
 
+  create_table "autousers", force: true do |t|
+    t.integer  "id_auto"
+    t.integer  "id_user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", force: true do |t|
     t.integer  "id_auto"
     t.string   "link"
@@ -47,7 +54,7 @@ ActiveRecord::Schema.define(version: 20141127234148) do
     t.integer  "id_auto"
     t.integer  "id_user"
     t.string   "question"
-    t.integer  "likes",                  default: 0,  null: false
+    t.integer  "likes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
