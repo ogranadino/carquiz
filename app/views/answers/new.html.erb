@@ -1,3 +1,10 @@
+<style>
+  .form-group .form-div {
+    padding: 10px 0px;
+  }
+</style>
+
+
 <% if @answer.errors.any? %>
   <% @answer.errors.full_messages.each do |message| %>
     <div class="alert alert-dismissable alert-danger">
@@ -25,7 +32,7 @@
           <input type="hidden" id="id_question" name="id_question" placeholder="Id question" class="form-control" value="<%=@question.id %>">
         <%end%>
         <%if @question %>
-          <%=@question.question%>
+          <div class="form-div"><%=@question.question%></div>
         <%end%>
 
 
@@ -35,13 +42,12 @@
 
       <!-- Label and input for id_user -->
       <div class="form-group">
-        <label for="id_user" class="col-sm-2 control-label">
-        User:
-        </label>
+        <label for="id_user" class="col-sm-2 control-label">User:</label>
+
         <div class="col-sm-10">
 
           <%if current_user!=nil%>
-          <%=current_user.email%>
+          <div class="form-div"><%=current_user.email%></div>
           <%else%>
           <div class="alert alert-danger" role="alert">Dude, log-in first!</div>
           <%end%>
@@ -54,9 +60,7 @@
       <!-- Label and input for answer -->
 
       <div class="form-group">
-        <label for="answer" class="col-sm-2 control-label">
-          Answer:
-        </label>
+        <label for="answer" class="col-sm-2 control-label">Answer:</label>
         <div class="col-sm-10">
          <%if current_user!=nil%>
           <input type="text" id="answer" name="answer" placeholder="Answer" class="form-control" value="<%= @answer.answer %>">
