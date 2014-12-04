@@ -1,16 +1,14 @@
 <% if @question.errors.any? %>
-  <% @question.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @question.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
 <% end %>
-
+<% end %>
 <div class="page-header">
   <h1>Add Question</h1>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     <form action="/create_question" class="form-horizontal">
@@ -21,13 +19,11 @@
         </label>
         <div class="col-sm-10">
           <input type="hidden" id="id_auto" name="id_auto" placeholder="Id auto" class="form-control" value="<%= @auto.id %>">
-        <%=details(@auto)%>
-
+          <%=details(@auto)%>
         </div>
       </div>
 
       <!-- Label and input for id_user -->
-
 
       <div class="form-group">
         <label for="id_user" class="col-sm-2 control-label">
@@ -39,32 +35,25 @@
           <%else%>
           <div class="alert alert-danger" role="alert">Dude, log-in first!</div>
           <%end%>
-
           <%if current_user!=nil%>
           <input type="hidden" id="id_user" name="id_user" placeholder="Id user" class="form-control" value="<%=current_user.id %>">
           <%end%>
-
-
         </div>
 
-
       </div>
-
       <!-- Label and input for question -->
       <div class="form-group">
         <label for="question" class="col-sm-2 control-label">
           Insert Question:
         </label>
         <div class="col-sm-10">
-        <%if current_user!=nil%>
+          <%if current_user!=nil%>
           <input type="text" id="question" name="question" placeholder="Question" class="form-control" value="<%= @question.question %>">
-        <%else%>
+          <%else%>
           <input type="text" id="question" name="question" placeholder="Question" class="form-control" value="<%= @question.question %>" disabled>
-        <%end%>
-
+          <%end%>
         </div>
       </div>
-
       <!-- Label and input for likes -->
       <div class="form-group">
         <label for="likes" class="col-sm-2 control-label">
@@ -74,18 +63,15 @@
           <input type="hidden" id="likes" name="likes" placeholder="Likes" class="form-control" value="0">
         </div>
       </div>
-
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-
-        <%if current_user!=nil%>
+          <%if current_user!=nil%>
           <input type="submit" value="Create Question" class="btn btn-primary">
-         <%else%>
+          <h4>We will send this question to <strong><%=@auto.users.count%> </strong> of our user(s) that already owns this car.</h4></p>
+          <%else%>
           <input type="submit" value="Create Question" class="btn btn-primary" disabled>
-          <%end%>
         </div>
-        <div class="col-sm-offset-2 col-sm-10">
-          <h4>We will sent this question to <strong><%=@auto.users.count%> </strong> users that owns this car.</h4></p></div>
+        <%end%>
       </div>
     </form>
   </div>

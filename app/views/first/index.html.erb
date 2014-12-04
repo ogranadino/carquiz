@@ -19,7 +19,7 @@
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="thumbnail">
           <% auto = Auto.find(lq.id_auto)%>
-          <img class="img-rounded" src="<%=auto.photos[0].link%>">
+          <img class="img-rounded"  src="<%=auto.photos[0].link%>">
           <div class="caption">
             <h5> <a href="/autos/<%=auto.id.to_s %>"><%=details(auto)%></a></h5>
             <div style="height: 75px" ><table>

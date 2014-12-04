@@ -2,13 +2,10 @@
 <html>
 <head>
   <title>Your Application: Second Screen</title>
-
-
 </head>
 <body>
   <div class="container">
-
-   <div class="row">
+  <div class="row">
     <div class="col-sm-8">
       <div class="thumbnail">
        <h2 class ="blueh1"><%=details(@auto)%></h2>
@@ -22,46 +19,46 @@
           <h5 class="blueh2">Estimated MPG</h3>
             <h4><%=@auto.mpg_city%> city / <%=@auto.mpg_hwy%> hwy</h1>
              <!-- <h6 class="blueh2">Request a Land Rover brochure</h5>-->
-                <!--<h6 class="blueh2">See Photos & Videos</h5>-->
-                  <a href="/questions/new/<%=@auto.id.to_s %>" class="btn btn-success btn-lg"  role="button">Ask a Question</a>
-                  <h4>Currently <strong><%=@auto.users.count%> </strong> Users Has This Car.</h4>
+             <!--<h6 class="blueh2">See Photos & Videos</h5>-->
+             <a href="/questions/new/<%=@auto.id.to_s %>" class="btn btn-success btn-lg"  role="button">Ask a Question</a>
+             <h4>Currently <strong><%=@auto.users.count%> </strong> User(s) Has This Car.</h4>
 
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="thumbnail">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#">Questions & Answers</a></li>
+           </div>
+         </div>
+         <div class="col-sm-12">
+          <div class="thumbnail">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#">Questions & Answers</a></li>
 
-                  </ul>
+            </ul>
 
-                  <div id="accordion" class="panel-group">
-
-
-                    <%i=1%>
-                    <% @auto.questions.each do |qw| %>
-                    <% answs = Answer.where(:id_question => qw.id).order("likes DESC")%>
-
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><h4><%=i%>. <strong><%=qw.question%></strong></h4> <p> Question by <strong><%=User.find(qw.id_user).email%></strong> <%=time_ago_in_words(qw.created_at)%> ago.</p>
+            <div id="accordion" class="panel-group">
 
 
+              <%i=1%>
+              <% @auto.questions.each do |qw| %>
+              <% answs = Answer.where(:id_question => qw.id).order("likes DESC")%>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><h4><%=i%>. <strong><%=qw.question%></strong></h4> <p> Question by <strong><%=User.find(qw.id_user).email%></strong> <%=time_ago_in_words(qw.created_at)%> ago.</p>
+
+
+                      <div>
+                        See answers. <span class="badge"><%=qw.answers.count%></span></div></div></a>
+                        <p><a href="/answers/new/<%=qw.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a></p>
+                      </h4>
+                    </div>
+
+                    <div id="collapse<%=i%>" class="panel-collapse collapse">
+                      <%i=i+1%>
+                      <% answs.each do |answ| %>
+
+
+                      <div class="panel-body">
+                        <ul>
                           <div>
-                          See answers. <span class="badge"><%=qw.answers.count%></span></div></div></a>
-                          <p><a href="/answers/new/<%=qw.id.to_s %>" class="btn btn-primary" role="button">Reply Now</a></p>
-                        </h4>
-                      </div>
-
-                      <div id="collapse<%=i%>" class="panel-collapse collapse">
-                        <%i=i+1%>
-                        <% answs.each do |answ| %>
-
-
-                        <div class="panel-body">
-                            <ul>
-                            <div>
                             <li><%=answ.answer%>
                             </div>
                             <div>by <strong><%=User.find(answ.id_user).email%></strong> <%=time_ago_in_words(answ.created_at)%> ago.
@@ -79,36 +76,24 @@
                              <%end%>
 
                              <strong>Votes <%=answ.likes%> </strong>
-
-
-
                            </div>
-                          </li></ul>
-                         </div>
-
-
-
-                         <% end %>
+                         </li></ul>
                        </div>
+                       <% end %>
                      </div>
-
-                     <% end %>
-
                    </div>
-                 </div>
-
+                   <% end %>
                  </div>
                </div>
-               <div class="col-sm-12">
-                <div class="thumbnail"><img src="/ad1.png"></div>
-              </div>
-            </div>
-
-
-
+             </div>
+           </div>
+           <div class="col-sm-12">
+            <div class="thumbnail"><img src="/ad1.png"></div>
           </div>
-        </body>
-        </html>
+        </div>
+      </div>
+    </body>
+    </html>
 
 
 
